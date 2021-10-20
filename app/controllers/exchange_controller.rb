@@ -4,33 +4,31 @@ require_relative '../client/exchange_rate'
 
 #  A controller class for currency exchange
 class ExchangeController < ApplicationController
-  before_action :create_exchange_rate_api_client
+  before_action :exchange_rate_api_client
 
   def index
     @currency_types = @client.extract_currency_types
-    return @currency_types if @currency_types
-
-    @currency_types = []
-    flash[:alert] = 'Timeout Error'
-    render action: :index
   end
 
   def convert
     usd_amount = params[:amount].to_f
     selected_currency_type = params[:currency]
 
-    rate = @client.extract_rate_for(selected_currency_type)
+    rate = @client.extract_rate_for(currency_type: selected_currency_type)
     @calculated_amount = calculate(usd_amount, rate)
   end
 
   private
 
-  def create_exchange_rate_api_client
-    @client = Client::ExchangeRate.new
-    return @client unless @client.response_hash.nil?
+  def exchange_rate_api_client
+    @client = validate_client(Client::ExchangeRate.new)
+  end
+
+  def validate_client(client)
+    return client unless client.response_hash['alert']
 
     @currency_types = []
-    flash[:alert] = 'your account has reached the the number of requests allowed by your plan.'
+    flash[:alert] = client.response_hash['alert']
     render action: :index
   end
 

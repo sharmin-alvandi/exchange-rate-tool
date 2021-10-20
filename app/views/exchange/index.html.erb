@@ -1,6 +1,6 @@
 <div style="text-align: center">
   <% if flash[:alert] %>
-    <div><%= flash[:alert] %></div>
+    <div style="color: red"><%= flash[:alert] %></div>
   <% end %>
   <%= form_with(url: convert_path, method: 'get', local: true) do %>
     <%= label_tag :amount, 'USD amount '%>
