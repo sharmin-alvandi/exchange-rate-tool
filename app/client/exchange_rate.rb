@@ -55,14 +55,15 @@ module Client
     end
 
     def url
-       "https://#{API_VERSION}.#{BASE_URL}/#{API_VERSION}/"\
-       "#{api_key}/latest/#{BASE_CURRENCY_TYPE}"
+      "https://#{API_VERSION}.#{BASE_URL}/#{API_VERSION}/"\
+      "#{api_key}/latest/#{BASE_CURRENCY_TYPE}"
     end
 
     def request_endpoint(url)
       uri = URI(url)
       response = handle_timeouts { Net::HTTP.get(uri) }
       return response if response['alert']
+
       JSON.parse(response)
     end
 
