@@ -4,7 +4,7 @@
   <% end %>
   <%= form_with(url: convert_path, method: 'get', local: true) do %>
     <%= label_tag :amount, 'USD amount '%>
-    <%= number_field_tag :amount, '0'%>
+    <%= number_field_tag :amount, '0', value: number_to_currency(params[:amount].to_f, delimiter: '', unit: ''), step: 0.01%>
     <%= label_tag :currency, ' To '%>
     <%= select_tag(:currency, options_for_select(@currency_types, 'CAD')) %>
     <%= button_tag 'Convert' %>
