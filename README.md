@@ -40,7 +40,7 @@ Rescued the following errors:
 - Net::ReadTimeout
 - Tried to avoid triggering the request limit by checking the remaining requests status before each request and providing an alert to the user.
 
-### User Interface
+<!--### User Interface
 I'm in the process of learning React and I will complete this project with React regardless of the result of the interview process.
 
-#### Special Thanks to Relay Platform for providing me with the learning opportunity by means of  working on this assignment. Would greatly appreciate the code reviewer(s) gift of feedback.
+#### Special Thanks to Relay Platform for providing me with the learning opportunity by means of  working on this assignment. Would greatly appreciate the code reviewer(s) gift of feedback.-->
