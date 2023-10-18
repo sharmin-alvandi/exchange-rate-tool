@@ -33,6 +33,8 @@ group :development, :test do
   gem 'pry', '~> 0.14.1'
   # To load environment variables from .env into ENV in development
   gem 'dotenv-rails'
+  # rspec-rails is a testing framework for Rails 5+
+  gem 'rspec-rails', '~> 6.0', '>= 6.0.3'
 end
 
 group :development do
